@@ -1,20 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package autonoma.pingpong.main;
 
-/**
- *
- * @author crist
- */
+import autonoma.pingpong.elements.CampoDeJuego;
+import autonoma.pingpong.gui.VentanaPrincipal;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class PingPong {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    private CampoDeJuego campo;
+
+    public PingPong() {
+        campo = new CampoDeJuego(800, 600);
+        Timer t = new Timer(16, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                campo.update();
+            }
+        });
+        t.start();
     }
-    
+
+    public CampoDeJuego getCampo() {
+        return campo;
+    }
+
+    public static void main(String[] args) {
+        new VentanaPrincipal(new PingPong());
+    }
 }
